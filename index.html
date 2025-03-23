@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mining Mini App</title>
+    <!-- Telegram Web App API -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        .balance {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mining Mini App</h1>
+    
+    <!-- Shiba Mining bo'limi -->
+    <div class="section">
+        <h2>Shiba Mining</h2>
+        <p>Balance: <span id="shiba_balance" class="balance">1.00</span> Shiba</p>
+        <button id="shibaMineBtn">Mine Shiba</button>
+    </div>
+    
+    <!-- BabyDoge Mining bo'limi -->
+    <div class="section">
+        <h2>BabyDoge Mining</h2>
+        <p>Balance: <span id="babydoge_balance" class="balance">1.00</span> BabyDoge</p>
+        <button id="babydogeMineBtn">Mine BabyDoge</button>
+    </div>
+    
+    <script>
+        // Telegram WebApp API bilan ulanish va mini app oynasini kengaytirish
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+        
+        // Shiba mining uchun o'zgaruvchilar
+        let shiba_balance = 1.00; // Boshlang'ich balans: 1 Shiba
+        let shiba_clickCount = 0;
+        
+        // BabyDoge mining uchun o'zgaruvchilar
+        let babydoge_balance = 1.00; // Boshlang'ich balans: 1 BabyDoge
+        let babydoge_clickCount = 0;
+        
+        // Shiba mining tugmasi
+        document.getElementById("shibaMineBtn").addEventListener("click", function(){
+            shiba_clickCount++;
+            // Har bir clickda qo'shiladigan miqdor: 0.5 + (clickCount - 1) * 0.2
+            let increment = 0.5 + (shiba_clickCount - 1) * 0.2;
+            shiba_balance += increment;
+            document.getElementById("shiba_balance").innerText = shiba_balance.toFixed(2);
+        });
+        
+        // BabyDoge mining tugmasi
+        document.getElementById("babydogeMineBtn").addEventListener("click", function(){
+            babydoge_clickCount++;
+            let increment = 0.5 + (babydoge_clickCount - 1) * 0.2;
+            babydoge_balance += increment;
+            document.getElementById("babydoge_balance").innerText = babydoge_balance.toFixed(2);
+        });
+    </script>
+</body>
+</html>
