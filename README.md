@@ -1,0 +1,2 @@
+# my-mining-app
+Airdrop
